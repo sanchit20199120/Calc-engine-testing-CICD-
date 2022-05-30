@@ -1,4 +1,4 @@
-name: CICD testing-2
+name: CICD testing-3
 
 on:
   pull_request:
@@ -20,8 +20,8 @@ jobs:
       - name: Merge Build - > Development
         uses: devmasx/merge-branch@v1.3.1
         with:
-          type: now
-          from_branch: sanchit20199120-patch-1
+          time: '5m'
+          from_branch: sanchit20199120-patch-3
           target_branch: Development
           period: 1
           github_token: ${{ secrets.GITHUB_TOKEN }}
