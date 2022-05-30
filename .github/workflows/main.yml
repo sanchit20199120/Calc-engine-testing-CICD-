@@ -1,4 +1,4 @@
-name: CICD testing-3
+name: CICD testing-4
 
 on:
   pull_request:
@@ -20,7 +20,7 @@ jobs:
       - name: Merge Build - > Development
         uses: devmasx/merge-branch@v1.3.1
         with:
-          time: '5m'
+          type: now
           from_branch: sanchit20199120-patch-3
           target_branch: Development
           period: 1
