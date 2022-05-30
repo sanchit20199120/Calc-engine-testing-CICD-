@@ -23,6 +23,7 @@ jobs:
           type: now
           from_branch: sanchit20199120-patch-1
           target_branch: Development
+          period: 1
           github_token: ${{ secrets.GITHUB_TOKEN }}
   DeployStaging:
     name: Deploy to Staging
