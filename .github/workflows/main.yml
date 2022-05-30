@@ -2,6 +2,7 @@ name: CICD
 
 on:
   pull_request:
+    types: [closed]
     branches: [ Development ]
   workflow_dispatch:
 jobs:
@@ -12,7 +13,7 @@ jobs:
       - name: Compile
         run: echo Hello, world!
   DeployDevelopment:
-    name: Deploy to Dev
+    name: Deploy to Staging
     needs: [Build]
     runs-on: ubuntu-latest
     steps:
@@ -21,8 +22,8 @@ jobs:
         uses: devmasx/merge-branch@v1.3.1
         with:
           type: now
-          from_branch: sanchit20199120-patch-1
-          target_branch: Development
+          from_branch: Development
+          target_branch: Staging
           github_token: ${{ secrets.GITHUB_TOKEN }}
         
     
