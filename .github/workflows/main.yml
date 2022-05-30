@@ -24,6 +24,19 @@ jobs:
           from_branch: sanchit20199120-patch-1
           target_branch: Development
           github_token: ${{ secrets.GITHUB_TOKEN }}
+  DeployStaging:
+    name: Deploy to Staging
+    needs: [DeployDevelopment]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Merge Development - > Staging
+        uses: devmasx/merge-branch@v1.3.1
+        with:
+          type: now
+          from_branch: Development
+          target_branch: Staging
+          github_token: ${{ secrets.GITHUB_TOKEN }}
         
     
     
