@@ -12,7 +12,7 @@ jobs:
       - uses:  actions/checkout@v2
       - name: Compile
         run: echo Hello, world!
-  DeployDevelopment:
+  DeployStaging:
     name: Deploy to Staging
     needs: [Build]
     runs-on: ubuntu-latest
@@ -24,8 +24,18 @@ jobs:
           type: now
           from_branch: Development
           target_branch: Staging
+          github_token: ${{ secrets.GITHUB_TOKEN }}   
+  DeployProduction:
+    name: Deploy to Production
+    needs: [Build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Merge Build - > Development
+        uses: devmasx/merge-branch@v1.3.1
+        with:
+          type: now
+          from_branch: Staging
+          target_branch: Production
           github_token: ${{ secrets.GITHUB_TOKEN }}
-        
-    
-    
 
