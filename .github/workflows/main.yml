@@ -1,4 +1,4 @@
-name: CICD
+name: CICD testing-1
 
 on:
   pull_request:
