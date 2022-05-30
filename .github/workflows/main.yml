@@ -27,7 +27,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}   
   DeployProduction:
     name: Deploy to Production
-    needs: [Build]
+    needs: [DeployStaging]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
