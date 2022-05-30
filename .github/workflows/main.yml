@@ -1,0 +1,30 @@
+name: CICD
+
+on:
+  pull_request:
+    branches: [ Development ]
+  workflow_dispatch:
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses:  actions/checkout@v2
+      - name: Compile
+        run: echo Hello, world!
+  DeployDevelopment:
+    name: Deploy to Dev
+    needs: [Build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Merge Build - > Development
+        uses: devmasx/merge-branch@v1.3.1
+        with:
+          type: now
+          from_branch: sanchit20199120-patch-1
+          target_branch: Development
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+        
+    
+    
+
