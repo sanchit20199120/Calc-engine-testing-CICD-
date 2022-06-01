@@ -42,4 +42,15 @@ jobs:
           from_branch: Staging
           target_branch: Production
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
+  release:
+    name:  Create Release
+    needs: [DeployProduction]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Creaye GitHub release
+        uses: actions/checkout@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.run_number }}
+          release_name: Release ${{ github.run_number }}
