@@ -1,25 +1,16 @@
 name: release
-
 on:
   push:
     branches: [ Production ]
-
 jobs:
   release:
-    name: Release
+    name:  Create Release
     runs-on: ubuntu-latest
-
     steps:
-      # ...
-      - name: Build & test
-        run: echo done!
-
-      - uses: marvinpinto/action-automatic-releases@latest
+      - name: Creaye GitHub release
+        uses: actions/checkout@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          automatic_release_tag: latest
-          prerelease: false
-          title: Development Build
-          files: |
-            LICENSE.txt
-            *.jar
+          tag_name: ${{ github.run_number }}
+          release_name: Release ${{ github.run_number }}
